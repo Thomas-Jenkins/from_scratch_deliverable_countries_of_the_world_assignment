@@ -12,7 +12,7 @@ export function useCountries() {
         const data = await fetchCountries();
         setCountries(data);
       } catch (a) {
-        console.log(a);
+        console.log(a); // eslint-disable-line no-console
         setError(a.message);
       }
     }
