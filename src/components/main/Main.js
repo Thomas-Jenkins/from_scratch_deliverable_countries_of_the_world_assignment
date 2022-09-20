@@ -1,28 +1,28 @@
 import React from 'react';
 
-import { fetchCountries } from '../../services/fetch-utils';
+import { useCountries } from '../../Hooks/useData';
+
+import CountryCards from '../CountryCards/CountryCards';
 
 
 export default function Main() {
-  const temp = fetchCountries();
-  console.log(temp);
+  const { countries, error } = useCountries();
   return (
     <main className="App">
-      
-      
-      <div className="title">
-        <h1>Flags of the World</h1>
-      </div>
-      <div className="navigation">
-        <input placeholder="Enter Search Here"></input>
-        <select>
-          <option>All</option>
-          <option>None</option>
-        </select>
-      </div>
-      <div className="list">
+      {error ? <p>{error}</p> :
+        <><div className="title">
+          <h1>Flags of the World</h1>
+        </div><div className="navigation">
+          <input placeholder="Lol this doesn't do anything "></input>
+          <select>
+            <option>All</option>
+            <option>None</option>
+          </select>
+        </div><div className="list">
+          {countries.map(countries => <CountryCards key={countries.id} {...countries} />)}
 
-      </div>
+        </div></>
+      }
     </main>
   );
 }
